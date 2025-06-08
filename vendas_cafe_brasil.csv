@@ -1,0 +1,101 @@
+ID_Venda,Data_Venda,ID_Produto,Nome_Produto,Categoria,Quantidade,Preco_Unitario,Valor_Total,ID_Loja,Nome_Loja,ID_Cliente,Metodo_Pagamento,Cidade,Estado,Regiao
+1,2025-06-02 03:43:54,102,Pão de Queijo,Salgado,3,3.85,11.55,1,café brasil - centro,1,Dinheiro,São Paulo,SP,Sudeste
+2,2025-06-05 00:57:58,101,Café Expresso,Bebida,2,3.78,7.56,1,Café Brasil - Centro,14,Cartão,São Paulo,SP,Sudeste
+3,2025-06-01 05:48:46,108,Brigadeiro,Doce,3,6.95,20.85,3,café brasil - aeroporto,5,Dinheiro,Rio de Janeiro,RJ,Sudeste
+4,2025-06-03 21:58:51,102,Pão de Queijo,Salgado ,1,4.47,4.47,2,Café Brasil - Shopping,1,pix,São Paulo,SP,Sudeste
+5,2025-06-05 13:10:00,102,Pão de Queijo,Salgado,3,7.06,21.18,3,café brasil - aeroporto,1,Pix,Rio de Janeiro,RJ,Sudeste
+6,2025-06-04 23:08:40,102,Pão de Queijo,Salgado,1,4.59,4.59,1,Café Brasil - Centro,15,Pix,São Paulo,SP,Sudeste
+7,2025-06-02 05:56:57,102,Pão de Queijo,Salgado,2,5.44,10.88,3,Café Brasil - Aeroporto,15, dinheiro,Rio de Janeiro,RJ,Sudeste
+8,2025-06-07 02:02:11,104,Bolo de Cenoura,Doce ,3,7.14,21.42,3,Café Brasil - Aeroporto,1,Dinheiro,Rio de Janeiro,RJ,Sudeste
+9,2025-06-04 14:24:16,104,Bolo de Cenoura,Doce,3,3.67,11.01,3,café brasil - aeroporto,6,Cartão,Rio de Janeiro,RJ,Sudeste
+10,2025-06-04 21:14:44,109,Latte,Bebida,3,6.61,19.83,3,Café Brasil - Aeroporto,2,pix,Rio de Janeiro,RJ,Sudeste
+11,2025-06-02 15:22:13,102,Pão de Queijo,Salgado,1,3.34,3.34,1,Café Brasil - Centro,13, dinheiro,São Paulo,SP,Sudeste
+12,2025-06-01 19:33:01,105,Suco Natural,Bebida,1,6.24,6.24,3,Café Brasil - Aeroporto,28,pix,Rio de Janeiro,RJ,Sudeste
+13,2025-06-06 09:35:22,103,Cappuccino,Bebida,1,7.75,7.75,2,Café Brasil - Shopping,30,CARTÃO,São Paulo,SP,Sudeste
+14,2025-06-02 13:36:49,105,Suco Natural,Bebida,5,5.85,29.25,3,Café Brasil - Aeroporto,2,Dinheiro,Rio de Janeiro,RJ,Sudeste
+15,2025-06-03 11:11:46,110,Quiche,Salgado,4,2.61,10.44,2,Café Brasil - Shopping,17,Dinheiro,São Paulo,SP,Sudeste
+16,2025-06-02 17:18:16,108,Brigadeiro,Doce,5,6.71,33.55,1,Café Brasil - Centro,13,pix,São Paulo,SP,Sudeste
+17,2025-06-04 23:39:40,104,Bolo de Cenoura,Doce,2,6.42,12.84,3,Café Brasil - Aeroporto,22,Cartão,Rio de Janeiro,RJ,Sudeste
+18,2025-06-02 21:25:28,102,Pão de Queijo,Salgado ,1,5.74,5.74,2,Café Brasil - Shopping,12,Dinheiro,São Paulo,SP,Sudeste
+19,2025-06-03 17:40:24,101,Café Expresso,Bebida,1,5.33,5.33,2,Café Brasil - Shopping,25, dinheiro,São Paulo,SP,Sudeste
+20,2025-06-02 03:26:03,108,brigadeiro,Doce,4,6.94,27.76,1,Café Brasil - Centro,29,CARTÃO,São Paulo,SP,Sudeste
+21,2025-06-06 12:21:13,101,Café Expresso,Bebida,1,2.83,2.83,3,café brasil - aeroporto,21,pix,Rio de Janeiro,RJ,Sudeste
+22,2025-06-02 02:44:40,103,Cappuccino,Bebida,2,4.03,8.06,2,Café Brasil - Shopping,20,CARTÃO,São Paulo,SP,Sudeste
+23,2025-06-07 08:36:22,109,latte,Bebida,1,7.6,7.6,1,café brasil - centro,11,Dinheiro,São Paulo,SP,Sudeste
+24,2025-06-03 16:33:58,103,Cappuccino,Bebida,1,7.92,7.92,2,Café Brasil - Shopping,21,CARTÃO,São Paulo,SP,Sudeste
+25,2025-06-01 21:05:14,108,Brigadeiro,Doce ,2,4.13,8.26,1,Café Brasil - Centro,1, dinheiro,São Paulo,SP,Sudeste
+26,2025-06-05 02:55:00,108,Brigadeiro,Doce ,5,3.37,16.85,3,café brasil - aeroporto,20,pix,Rio de Janeiro,RJ,Sudeste
+27,2025-06-01 22:33:03,102,pão de queijo,Salgado,2,5.68,11.36,3,Café Brasil - Aeroporto,10,Pix,Rio de Janeiro,RJ,Sudeste
+28,2025-06-04 04:45:54,104,Bolo de Cenoura,Doce,3,3.81,11.43,3,Café Brasil - Aeroporto,10,Dinheiro,Rio de Janeiro,RJ,Sudeste
+29,2025-06-01 19:34:28,108,Brigadeiro,Doce,5,7.98,39.9,3,Café Brasil - Aeroporto,10,Cartão,Rio de Janeiro,RJ,Sudeste
+30,2025-06-05 11:00:51,106,Torrada com Manteiga,Salgado,2,4.91,9.82,2,Café Brasil - Shopping,1001,CARTÃO,São Paulo,SP,Sudeste
+31,2025-06-02 09:37:44,109,latte,Bebida,1,7.66,7.66,2,Café Brasil - Shopping,21,Pix,São Paulo,SP,Sudeste
+32,2025-06-06 09:36:40,110,Quiche,Salgado,3,3.62,10.86,1,Café Brasil - Centro,12,Dinheiro,São Paulo,SP,Sudeste
+33,2025-06-07 04:45:46,107,Croissant,Salgado,1,2.52,2.52,2,Café Brasil - Shopping,11,CARTÃO,São Paulo,SP,Sudeste
+34,2025-06-06 05:25:36,107,Croissant,Salgado,1,3.12,3.12,3,Café Brasil - Aeroporto,11,pix,Rio de Janeiro,RJ,Sudeste
+35,2025-06-07 01:27:09,103,Cappuccino,Bebida,3,4.51,13.53,1,café brasil - centro,1,Pix,São Paulo,SP,Sudeste
+36,2025-06-02 05:54:59,109,Latte,Bebida,5,6.62,33.1,2,Café Brasil - Shopping,12,Cartão,São Paulo,SP,Sudeste
+37,2025-06-07 03:56:08,106,Torrada com Manteiga,Salgado ,2,3.97,7.94,2,Café Brasil - Shopping,12,pix,São Paulo,SP,Sudeste
+38,2025-06-06 07:01:53,106,Torrada com Manteiga,Salgado,2,3.73,7.46,2,café brasil - shopping,11,Pix,São Paulo,SP,Sudeste
+39,2025-06-01 04:11:58,109,Latte,Bebida,5,4.32,21.6,2,Café Brasil - Shopping,12,Dinheiro,São Paulo,SP,Sudeste
+40,2025-06-07 11:25:14,102,Pão de Queijo,Salgado,4,4.4,17.6,3,café brasil - aeroporto,22,Cartão,Rio de Janeiro,RJ,Sudeste
+41,2025-06-07 19:36:15,105,Suco Natural,Bebida,4,2.51,10.04,1,Café Brasil - Centro,11,Pix,São Paulo,SP,Sudeste
+42,2025-06-06 04:32:14,107,Croissant,Salgado,3,5.93,17.79,1,Café Brasil - Centro,15,Pix,São Paulo,SP,Sudeste
+43,2025-06-02 15:18:28,107,Croissant,Salgado,3,5.55,16.65,3,Café Brasil - Aeroporto,19, dinheiro,Rio de Janeiro,RJ,Sudeste
+44,2025-06-01 11:03:49,110,Quiche,Salgado,4,5.51,22.04,2,Café Brasil - Shopping,1,Pix,São Paulo,SP,Sudeste
+45,2025-06-05 17:13:41,108,Brigadeiro,Doce,4,6.22,24.88,2,Café Brasil - Shopping,8,Dinheiro,São Paulo,SP,Sudeste
+46,2025-06-07 08:33:04,105,Suco Natural,Bebida,5,4.34,21.7,3,café brasil - aeroporto,7,Dinheiro,Rio de Janeiro,RJ,Sudeste
+47,2025-06-01 16:34:52,104,Bolo de Cenoura,Doce,5,7.17,35.85,2,café brasil - shopping,5,pix,São Paulo,SP,Sudeste
+48,2025-06-06 00:12:06,108,Brigadeiro,Doce,2,3.31,6.62,2,Café Brasil - Shopping,1,Cartão,São Paulo,SP,Sudeste
+49,2025-06-05 09:04:22,103,Cappuccino,Bebida,5,5.06,25.3,3,café brasil - aeroporto,15,CARTÃO,Rio de Janeiro,RJ,Sudeste
+50,2025-06-07 16:06:48,109,Latte,Bebida,5,4.25,21.25,3,Café Brasil - Aeroporto,13,pix,Rio de Janeiro,RJ,Sudeste
+51,2025-06-07 09:00:06,103,Cappuccino,Bebida,4,4.98,19.92,3,Café Brasil - Aeroporto,1,CARTÃO,Rio de Janeiro,RJ,Sudeste
+52,2025-06-03 08:32:15,104,Bolo de Cenoura,Doce,4,2.93,11.72,2,Café Brasil - Shopping,5,Cartão,São Paulo,SP,Sudeste
+53,2025-06-01 15:06:17,104,Bolo de Cenoura,Doce,2,6.39,12.78,2,Café Brasil - Shopping,11,pix,São Paulo,SP,Sudeste
+54,2025-06-07 20:57:36,107,Croissant,Salgado ,1,7.21,7.21,3,Café Brasil - Aeroporto,15,pix,Rio de Janeiro,RJ,Sudeste
+55,2025-06-02 17:46:33,109,Latte,Bebida,5,6.9,34.5,3,café brasil - aeroporto,16,CARTÃO,Rio de Janeiro,RJ,Sudeste
+56,2025-06-02 22:39:20,107,Croissant,Salgado,2,7.12,14.24,3,Café Brasil - Aeroporto,12,Dinheiro,Rio de Janeiro,RJ,Sudeste
+57,2025-06-04 06:36:59,102,pão de queijo,Salgado,4,3.25,13.0,3,café brasil - aeroporto,19,Pix,Rio de Janeiro,RJ,Sudeste
+58,2025-06-01 17:07:24,107,croissant,Salgado,4,3.89,15.56,2,Café Brasil - Shopping,21,Cartão,São Paulo,SP,Sudeste
+59,2025-06-02 07:15:30,102,Pão de Queijo,Salgado,1,6.65,6.65,3,café brasil - aeroporto,26,CARTÃO,Rio de Janeiro,RJ,Sudeste
+60,2025-06-03 13:25:51,102,pão de queijo,Salgado,2,5.06,10.12,3,Café Brasil - Aeroporto,28,Cartão,Rio de Janeiro,RJ,Sudeste
+61,2025-06-03 20:57:50,105,Suco Natural,Bebida,5,2.64,13.2,1,Café Brasil - Centro,27,Cartão,São Paulo,SP,Sudeste
+62,2025-06-07 10:58:49,102,Pão de Queijo,Salgado,2,3.06,6.12,3,café brasil - aeroporto,22,Dinheiro,Rio de Janeiro,RJ,Sudeste
+63,2025-06-01 18:25:17,106,Torrada com Manteiga,Salgado ,4,6.14,24.56,3,Café Brasil - Aeroporto,11,Dinheiro,Rio de Janeiro,RJ,Sudeste
+64,2025-06-04 06:24:46,107,Croissant,Salgado,4,6.39,25.56,2,café brasil - shopping,5,pix,São Paulo,SP,Sudeste
+65,2025-06-07 08:56:17,108,Brigadeiro,Doce ,5,3.98,19.9,2,Café Brasil - Shopping,4,pix,São Paulo,SP,Sudeste
+66,2025-06-04 11:50:00,110,quiche,Salgado,4,4.35,17.4,3,Café Brasil - Aeroporto,4,Pix,Rio de Janeiro,RJ,Sudeste
+67,2025-06-05 06:57:22,110,quiche,Salgado,3,5.56,16.68,3,Café Brasil - Aeroporto,4,CARTÃO,Rio de Janeiro,RJ,Sudeste
+68,2025-06-01 03:23:16,108,Brigadeiro,Doce,4,4.96,19.84,3,café brasil - aeroporto,3, dinheiro,Rio de Janeiro,RJ,Sudeste
+69,2025-06-04 20:02:20,106,Torrada com Manteiga,Salgado,5,5.42,27.1,2,café brasil - shopping,2,Cartão,São Paulo,SP,Sudeste
+70,2025-06-06 19:30:36,102,Pão de Queijo,Salgado,2,4.24,8.48,3,café brasil - aeroporto,6,pix,Rio de Janeiro,RJ,Sudeste
+71,2025-06-05 21:43:42,105,Suco Natural,Bebida,5,7.87,39.35,3,café brasil - aeroporto,1,Pix,Rio de Janeiro,RJ,Sudeste
+72,2025-06-02 09:59:14,103,cappuccino,Bebida ,1,6.39,6.39,2,café brasil - shopping,5,CARTÃO,São Paulo,SP,Sudeste
+73,2025-06-04 17:25:46,108,Brigadeiro,Doce,1,5.66,5.66,1,café brasil - centro,1,Dinheiro,São Paulo,SP,Sudeste
+74,2025-06-06 01:57:06,102,pão de queijo,Salgado,4,2.91,11.64,2,Café Brasil - Shopping,8,Cartão,São Paulo,SP,Sudeste
+75,2025-06-07 22:30:57,102,Pão de Queijo,Salgado,4,5.83,23.32,3,Café Brasil - Aeroporto,6,Pix,Rio de Janeiro,RJ,Sudeste
+76,2025-06-01 22:11:45,110,Quiche,Salgado ,3,5.63,16.89,2,Café Brasil - Shopping,10,Cartão,São Paulo,SP,Sudeste
+77,2025-06-02 20:05:50,105,suco natural,Bebida ,1,3.36,3.36,3,Café Brasil - Aeroporto,1,pix,Rio de Janeiro,RJ,Sudeste
+78,2025-06-03 16:31:50,105,suco natural,Bebida,2,4.08,8.16,1,café brasil - centro,15, dinheiro,São Paulo,SP,Sudeste
+79,2025-06-06 05:25:28,104,Bolo de Cenoura,Doce,1,5.5,5.5,2,café brasil - shopping,5,Pix,São Paulo,SP,Sudeste
+80,2025-06-04 04:31:39,110,Quiche,Salgado,5,7.57,37.85,3,Café Brasil - Aeroporto,8, dinheiro,Rio de Janeiro,RJ,Sudeste
+81,2025-06-01 15:43:46,109,Latte,Bebida,4,2.94,11.76,2,café brasil - shopping,7,CARTÃO,São Paulo,SP,Sudeste
+82,2025-06-06 09:48:45,110,Quiche,Salgado,1,8.0,8.0,3,café brasil - aeroporto,5,CARTÃO,Rio de Janeiro,RJ,Sudeste
+83,2025-06-04 23:06:42,108,Brigadeiro,Doce,2,7.98,15.96,2,Café Brasil - Shopping,5,Pix,São Paulo,SP,Sudeste
+84,2025-06-03 14:59:15,106,Torrada com Manteiga,Salgado,1,7.22,7.22,3,Café Brasil - Aeroporto,4,Dinheiro,Rio de Janeiro,RJ,Sudeste
+85,2025-06-01 14:42:56,108,Brigadeiro,Doce,3,3.89,11.67,1,café brasil - centro,5,pix,São Paulo,SP,Sudeste
+86,2025-06-05 18:08:58,107,Croissant,Salgado,2,5.35,10.7,1,café brasil - centro,1,Cartão,São Paulo,SP,Sudeste
+87,2025-06-06 22:10:06,105,Suco Natural,Bebida,4,3.17,12.68,2,Café Brasil - Shopping,14, dinheiro,São Paulo,SP,Sudeste
+88,2025-06-01 16:48:02,107,Croissant,Salgado,2,7.96,15.92,1,café brasil - centro,5,Pix,São Paulo,SP,Sudeste
+89,2025-06-04 17:11:34,109,Latte,Bebida,3,4.79,14.37,3,Café Brasil - Aeroporto,4, dinheiro,Rio de Janeiro,RJ,Sudeste
+90,2025-06-07 15:06:27,103,Cappuccino,Bebida,3,6.75,20.25,1,café brasil - centro,2,Pix,São Paulo,SP,Sudeste
+91,2025-06-04 05:24:36,105,Suco Natural,Bebida,5,7.99,39.95,3,Café Brasil - Aeroporto,3,pix,Rio de Janeiro,RJ,Sudeste
+92,2025-06-02 20:49:06,108,Brigadeiro,Doce,2,7.89,15.78,2,Café Brasil - Shopping,3,CARTÃO,São Paulo,SP,Sudeste
+93,2025-06-06 23:44:21,108,Brigadeiro,Doce,4,4.62,18.48,3,café brasil - aeroporto,6, dinheiro,Rio de Janeiro,RJ,Sudeste
+94,2025-06-04 00:33:31,106,Torrada com Manteiga,Salgado,4,3.05,12.2,1,Café Brasil - Centro,7,Dinheiro,São Paulo,SP,Sudeste
+95,2025-06-04 23:39:35,108,brigadeiro,Doce,3,5.93,17.79,2,Café Brasil - Shopping,5,pix,São Paulo,SP,Sudeste
+96,2025-06-01 22:28:51,106,torrada com manteiga,Salgado,4,7.3,29.2,3,Café Brasil - Aeroporto,24,CARTÃO,Rio de Janeiro,RJ,Sudeste
+97,2025-06-06 03:39:33,102,Pão de Queijo,Salgado,1,6.68,6.68,2,Café Brasil - Shopping,23,Pix,São Paulo,SP,Sudeste
+98,2025-06-02 08:53:27,101,Café Expresso,Bebida,3,4.56,13.68,2,Café Brasil - Shopping,22,Cartão,São Paulo,SP,Sudeste
+99,2025-06-02 18:07:10,102,Pão de Queijo,Salgado,4,5.91,23.64,3,Café Brasil - Aeroporto,21,pix,Rio de Janeiro,RJ,Sudeste
+100,2025-06-04 10:28:20,105,Suco Natural,Bebida,1,7.44,7.44,3,Café Brasil - Aeroporto,20, dinheiro,Rio de Janeiro,RJ,Sudeste

@@ -1,0 +1,197 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH verifica_data AS (\n  SELECT id FROM dim_data \n  WHERE dia = {{ $json.dia }} \n    AND mes = {{ $json.mes }} \n    AND ano = {{ $json.ano }}\n),\ninsere_data AS (\n  INSERT INTO dim_data (id, data, ano, mes, dia)\n  SELECT \n    (SELECT COALESCE(MAX(id),0) + 1 FROM dim_data),\n    '{{ $json.original_data.Data_Venda }}',\n    {{ $json.ano }},\n    {{ $json.mes }},\n    {{ $json.dia }}\n  WHERE NOT EXISTS (SELECT 1 FROM verifica_data)\n  RETURNING id\n),\ninsere_prod AS (\n  INSERT INTO dim_produto (id, nome, categoria, preco)\n  SELECT \n    {{ $json.original_data.ID_Produto }},\n    '{{ $json.original_data.Nome_Produto }}',\n    '{{ $json.original_data.Categoria }}',\n    '{{ $json.original_data.Preco_Unitario }}'\n  WHERE NOT EXISTS (SELECT 1 FROM dim_produto WHERE id = {{ $json.original_data.ID_Produto }})\n  RETURNING id\n),\ninsere_cliente as (\n  INSERT INTO dim_cliente (id, nome, sexo, idade, email)\n  SELECT \n    {{ $json.original_data.ID_Cliente }},\n    '{{ $json.original_data.Nome }}',\n    '{{ $json.original_data.Sexo }}',\n     {{ $json.original_data.Idade }},\n    '{{ $json.original_data.Email }}'\n  WHERE NOT EXISTS (SELECT 1 FROM dim_cliente WHERE id = {{ $json.original_data.ID_Cliente }})\n  RETURNING id\n),\ninsere_loja as (\n  INSERT INTO dim_loja (id, nome, cidade, estado, regiao)\n    SELECT \n      {{ $json.original_data.ID_Loja }},\n      '{{ $json.original_data.Nome_Loja }}',\n      '{{ $json.original_data.Cidade }}',\n      '{{ $json.original_data.UF }}',\n      '{{ $json.original_data.Regiao }}'\n    WHERE NOT EXISTS (SELECT 1 FROM dim_loja WHERE id = {{ $json.original_data.ID_Loja }})\n    RETURNING id\n),\nid_data AS (\n  SELECT id FROM verifica_data\n  UNION ALL\n  SELECT id FROM insere_data\n)\nINSERT INTO fato_vendas (id, data_id, loja_id, produto_id, cliente_id, quantidade, valor_total)\nSELECT\n  {{ $json.original_data.ID_Venda }},\n  (SELECT id FROM id_data LIMIT 1),\n  {{ $json.original_data.ID_Loja }},\n  {{ $json.original_data.ID_Produto }},\n  {{ $json.original_data.ID_Cliente }},\n  {{ $json.original_data.Quantidade }},\n  {{ $json.original_data.Valor_Total }}\nWHERE NOT EXISTS (SELECT 1 FROM fato_vendas WHERE id = {{ $json.original_data.ID_Venda }})\nRETURNING 'Dados inseridos com sucesso' AS resultado;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1200,
+        40
+      ],
+      "id": "db376c7c-a9ee-4e73-9195-59f57fae3cab",
+      "name": "Postgres3",
+      "executeOnce": false,
+      "credentials": {
+        "postgres": {
+          "id": "n3LxoPaJ3rxi50x3",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "const vendas = $input.all(); // pega todos os registros de entrada\n\nreturn vendas.map(item => {\n  const venda = item.json;\n  const dataVenda = venda.Data_Venda;\n  const dataObj = new Date(dataVenda);\n\n  return {\n    json: {\n      original_data: venda,\n      data: dataVenda,\n      ano: dataObj.getFullYear(),\n      mes: dataObj.getMonth() + 1,\n      dia: dataObj.getDate()\n    }\n  };\n});"
+      },
+      "id": "ba8ffa59-9d26-4e3c-93e9-c9625bcf0779",
+      "name": "Extrair Data",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        900,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map(item => {\n  const venda = item.json;\n  venda.Data_Venda = new Date(venda.Data_Venda).toISOString().split('T')[0]; // YYYY-MM-DD\n  venda.Quantidade = parseInt(venda.Quantidade);\n  venda.Preco_Unitario = parseFloat(venda.Preco_Unitario);\n  venda.Valor_Total = parseFloat(venda.Valor_Total);\n  return { json: venda };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        280,
+        40
+      ],
+      "id": "b5c677f6-ac3f-428f-b1ba-364be9805b75",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "255db139-0d1c-46e6-a54b-e637b821dc40",
+      "name": "Extract from CSV",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        0,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "filePath": "/data/arquivo.csv"
+      },
+      "id": "4f6a44ef-ebb9-47bb-b011-d300318df057",
+      "name": "Read File",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT \n  {{ $json.ID_Cliente }} AS ID_Cliente,\n  {{ $json.ID_Venda }} AS ID_Venda,\n  '{{ $json.Data_Venda }}' AS Data_Venda,\n  {{ $json.ID_Produto }} AS ID_Produto,\n  '{{ $json.Nome_Produto }}' AS Nome_Produto,\n  '{{ $json.Categoria }}' AS Categoria,\n  {{ $json.Quantidade }} AS Quantidade,\n  {{ $json.Preco_Unitario }} AS Preco_Unitario,\n  {{ $json.Valor_Total }} AS Valor_Total,\n  {{ $json.ID_Loja }} AS ID_Loja,\n  '{{ $json.Nome_Loja }}' AS Nome_Loja,\n  '{{ $json.Metodo_Pagamento }}' AS Metodo_Pagamento,\n  '{{ $json.Cidade }}' AS Cidade,\n  '{{ $json.Estado }}' AS Estado,\n  '{{ $json.Regiao }}' AS Regiao,\n  c.*\nFROM Cliente c\nWHERE c.Id_Cliente = {{ $json.ID_Cliente }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        560,
+        40
+      ],
+      "id": "6c2e2068-ead4-468b-8a16-67e5dcfb7c17",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "bBL61QKil4HQU3nA",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -480,
+        40
+      ],
+      "id": "f0cc10c2-3d23-40db-8ea3-a375eda93e56",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "connections": {
+    "Postgres3": {
+      "main": [
+        []
+      ]
+    },
+    "Extrair Data": {
+      "main": [
+        [
+          {
+            "node": "Postgres3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from CSV": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read File": {
+      "main": [
+        [
+          {
+            "node": "Extract from CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Extrair Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e044d6223253e37a177cbcef00130d9b389dc0465d1a42294a1e0708f15acd39"
+  }
+}

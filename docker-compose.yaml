@@ -1,0 +1,51 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: origem
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: destino
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin
+      - DB_SQLITE_DATABASE=/home/node/.n8n/database.sqlite
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+    volumes:
+      - ./n8n:/home/node/.n8n
+      - ./vendas_cafe_brasil.csv:/data/arquivo.csv
+    depends_on:
+      - mysql
+      - postgres
+
+volumes:
+  mysql_data:
+  postgres_data:
+  n8n_data:
