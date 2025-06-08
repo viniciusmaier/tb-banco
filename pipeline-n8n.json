@@ -9,8 +9,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        1200,
-        40
+        1220,
+        -60
       ],
       "id": "db376c7c-a9ee-4e73-9195-59f57fae3cab",
       "name": "Postgres3",
@@ -31,19 +31,19 @@
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        900,
-        40
+        920,
+        -60
       ]
     },
     {
       "parameters": {
-        "jsCode": "return $input.all().map(item => {\n  const venda = item.json;\n  venda.Data_Venda = new Date(venda.Data_Venda).toISOString().split('T')[0]; // YYYY-MM-DD\n  venda.Quantidade = parseInt(venda.Quantidade);\n  venda.Preco_Unitario = parseFloat(venda.Preco_Unitario);\n  venda.Valor_Total = parseFloat(venda.Valor_Total);\n  return { json: venda };\n});"
+        "jsCode": "\nfunction sanitizeEmail(email) {\n  if (!email) return '';\n  const cleanEmail = email.trim().toLowerCase();\n  const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n  return emailRegex.test(cleanEmail) ? cleanEmail : '';\n}\n\nfunction sanitizePhone(phone) {\n  if (!phone) return '';\n  \n  const digits = phone.replace(/\\D/g, '');\n\n  if (digits.length === 10) {\n    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;\n  } else if (digits.length === 11) {\n    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;\n  }\n\n  return digits;\n}\n\n\n\nreturn $input.all().map(item => {  \n  const venda = item.json;\n  venda.Email = sanitizeEmail(venda.Email);\n  venda.Telefone = sanitizePhone(venda.Telefone);\n  venda.Data_Venda = new Date(venda.Data_Venda).toISOString().split('T')[0]; // YYYY-MM-DD\n  venda.Quantidade = parseInt(venda.Quantidade);\n  venda.Preco_Unitario = parseFloat(venda.Preco_Unitario);\n  venda.Valor_Total = parseFloat(venda.Valor_Total);\n  return { json: venda };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        280,
-        40
+        580,
+        -60
       ],
       "id": "b5c677f6-ac3f-428f-b1ba-364be9805b75",
       "name": "Code"
@@ -57,8 +57,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        0,
-        40
+        -140,
+        -60
       ]
     },
     {
@@ -70,8 +70,8 @@
       "type": "n8n-nodes-base.readBinaryFile",
       "typeVersion": 1,
       "position": [
-        -240,
-        40
+        -440,
+        -60
       ]
     },
     {
@@ -83,8 +83,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        560,
-        40
+        200,
+        -60
       ],
       "id": "6c2e2068-ead4-468b-8a16-67e5dcfb7c17",
       "name": "MySQL",
@@ -109,11 +109,142 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -480,
-        40
+        -880,
+        80
       ],
       "id": "f0cc10c2-3d23-40db-8ea3-a375eda93e56",
       "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT c.* FROM Cliente c;\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -140,
+        320
+      ],
+      "id": "d68d2095-9351-4137-94c0-ebcfb65f19c8",
+      "name": "MySQL1",
+      "credentials": {
+        "mySql": {
+          "id": "bBL61QKil4HQU3nA",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\n// Função para limpar e validar e-mail\nfunction sanitizeEmail(email) {\n  if (!email) return '';\n  const cleanEmail = email.trim().toLowerCase();\n  const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n  return emailRegex.test(cleanEmail) ? cleanEmail : '';\n}\n\n// Função para limpar e formatar telefone\nfunction sanitizePhone(phone) {\n  if (!phone) return '';\n  \n  // Remove tudo que não for dígito\n  const digits = phone.replace(/\\D/g, '');\n\n  // Opção A: Retornar apenas os números\n  // return digits;\n\n  // Opção B: Formatar com máscara (se possível)\n  if (digits.length === 10) {\n    // Ex: 5198765432 => (51) 9876-5432\n    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;\n  } else if (digits.length === 11) {\n    // Ex: 51987654321 => (51) 98765-4321\n    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;\n  }\n\n  // Se não bater com nenhum padrão esperado, retorna só os números\n  return digits;\n}\n\n// Processa todos os itens\nreturn items.map(item => {\n  const data = item.json;\n\n  data.Email = sanitizeEmail(data.Email);\n  data.Telefone = sanitizePhone(data.Telefone);\n\n  return { json: data };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        320
+      ],
+      "id": "51a4a408-176a-475d-a005-e0d888863311",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dim_cliente",
+          "mode": "list",
+          "cachedResultName": "dim_cliente"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.ID_Cliente }}",
+            "sexo": "={{ $json.Sexo }}",
+            "nome": "={{ $json.Nome }}",
+            "idade": "={{ $json.Idade }}",
+            "email": "={{ $json.Email }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nome",
+              "displayName": "nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sexo",
+              "displayName": "sexo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "idade",
+              "displayName": "idade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "skipOnConflict": true
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        520,
+        320
+      ],
+      "id": "32c15c15-0c7f-41eb-b67c-76f38cb178e6",
+      "name": "Postgres",
+      "executeOnce": false,
+      "retryOnFail": false,
+      "credentials": {
+        "postgres": {
+          "id": "n3LxoPaJ3rxi50x3",
+          "name": "Postgres account"
+        }
+      }
     }
   ],
   "connections": {
@@ -137,7 +268,7 @@
       "main": [
         [
           {
-            "node": "MySQL",
+            "node": "Extrair Data",
             "type": "main",
             "index": 0
           }
@@ -148,7 +279,7 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "MySQL",
             "type": "main",
             "index": 0
           }
@@ -170,7 +301,7 @@
       "main": [
         [
           {
-            "node": "Extrair Data",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -182,6 +313,33 @@
         [
           {
             "node": "Read File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
             "type": "main",
             "index": 0
           }
